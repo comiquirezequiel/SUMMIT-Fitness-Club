@@ -1,0 +1,333 @@
+/* --- CONFIGURACIÓN BASE --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #0d0d14;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* --- LAYOUT PRINCIPAL --- */
+.contenedor-catalogo {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    gap: 0;
+}
+
+/* --- COLUMNA VISUAL --- */
+.columna-visual {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0d0d14;
+    overflow: hidden;
+    transition: flex 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.columna-visual.con-panel {
+    flex: 1.4;
+}
+
+/* --- MODELO PRINCIPAL --- */
+#modelo-interactivo {
+    width: 100%;
+    height: 90%;
+    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+}
+
+#modelo-interactivo.oculto {
+    opacity: 0;
+    transform: scale(0.9);
+    filter: blur(10px);
+    pointer-events: none;
+}
+
+.parte-modelo, .parte-modelo path {
+    cursor: pointer;
+    transition: fill 0.3s;
+}
+
+.parte-modelo:hover, .parte-modelo:hover path {
+    fill: rgba(0, 210, 255, 0.35) !important;
+    filter: drop-shadow(0 0 18px rgba(0, 210, 255, 0.7));
+}
+
+/* --- BOTÓN VOLVER --- */
+.btn-volver {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: rgba(45, 45, 63, 0.85);
+    color: #ccd0e0;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+}
+
+.btn-volver.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-volver:hover {
+    background: #00d2ff;
+    color: #0d0d14;
+    border-color: #00d2ff;
+}
+
+/* --- CONTENEDOR DEL DETALLE MUSCULAR --- */
+.contenedor-detalle {
+    position: absolute;
+    width: 96%;
+    height: 96%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    filter: blur(15px);
+    transform: scale(1.05);
+    pointer-events: none;
+    transition: opacity 0.6s ease-out, filter 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.contenedor-detalle.activo {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* --- SVG DE DETALLE --- */
+.svg-detalle {
+    display: none;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.svg-detalle.activo {
+    display: block;
+}
+
+/* Ajustes por vista — solo los que son muy anchos o muy altos */
+#vista-brazos-frente   { max-width: 50%; }
+#vista-brazos-trasero  { max-width: 50%; }
+
+
+/* --- MÚSCULOS DE COLORES --- */
+.sub-musculo {
+    cursor: pointer;
+    fill-opacity: 0.45;
+    transition: all 0.3s ease;
+    stroke: #ffffff;
+    stroke-width: 2px;
+    stroke-opacity: 0.6;
+}
+
+.sub-musculo:hover, .sub-musculo.activo {
+    fill-opacity: 0.50;
+    stroke-width: 4px;
+    stroke-opacity: 1;
+    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.85));
+    outline: none;
+}
+
+/* PECHO */
+#pecho-superior        { fill: #0AFF0A; }
+#pecho-medio           { fill: #F68616; }
+#pecho-inferior        { fill: #CC25ED; }
+
+/* BRAZO FRENTE */
+#deltoide-frontal      { fill: #A70B0B; }
+#deltoide-lateral      { fill: #17C6D3; }
+#cabeza-larga          { fill: #DFB321; }
+#cabeza-corta          { fill: #DB1CED; }
+#antebrazo-braquiorradial { fill: #C7159A; }
+#antebrazo-flexores    { fill: #0AFF0A; }
+
+/* --- ABDOMEN --- */
+#recto-abdominal       { fill: #FF4545; }
+#oblicuos              { fill: #FFB800; }
+#serrato-anterior      { fill: #00E5FF; }
+
+/* --- ESPALDA --- */
+#trapecio-superior     { fill: #FF6B35; }
+#espalda-alta          { fill: #7B61FF; }
+#dorsales-anchos       { fill: #00C9A7; }
+#lumbar                { fill: #FF3CAC; }
+
+/* BRAZO TRASERO */
+#deltoides-posterior   { fill: #FF9800; }
+#triceps-larga         { fill: #8E24AA; }
+#triceps-lateral       { fill: #E91E63; }
+#triceps-medial        { fill: #00ACC1; }
+#antebrazo-extensores  { fill: #F4511E; }
+
+/* --- PIERNA FRENTE --- */
+#cuadriceps            { fill: #39FF14; }
+#aductores             { fill: #FF6B35; }
+#tibia-anterior        { fill: #00BFFF; }
+
+/* PIERNA TRASERA */
+#gluteo                { fill: #3F51B5; }
+#isquiotibiales        { fill: #E53935; }
+#gemelos               { fill: #43A047; }
+#abductores            { fill: #FDD835; }
+
+/* --- COLUMNA DE INFORMACIÓN --- */
+.columna-lista {
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    background: #13131f;
+    border-left: 1px solid rgba(255,255,255,0.06);
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    transition: width 0.6s cubic-bezier(0.77, 0, 0.175, 1),
+                opacity 0.5s ease 0.2s,
+                padding 0.6s ease;
+}
+
+.columna-lista.visible {
+    width: 380px;
+    min-width: 340px;
+    opacity: 1;
+    padding: 40px 32px;
+}
+
+/* --- CONTENIDO DEL PANEL --- */
+.panel-header {
+    margin-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding-bottom: 20px;
+}
+
+h2 {
+    margin: 0 0 4px 0;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #00d2ff;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.panel-subtitulo {
+    font-size: 0.8rem;
+    color: #4a4a6a;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+.info-mecanica {
+    flex: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #2d2d4a transparent;
+}
+
+.info-mecanica p,
+.info-mecanica div {
+    font-size: 0.97rem;
+    line-height: 1.75;
+    color: #8888aa;
+}
+
+.info-mecanica strong {
+    color: #c0c0d8;
+    font-weight: 600;
+}
+
+/* Instrucción inicial */
+.instruccion-inicial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    gap: 12px;
+    color: #3a3a5a;
+    font-size: 0.9rem;
+    padding: 20px;
+}
+
+.instruccion-inicial .icono {
+    font-size: 2.5rem;
+    opacity: 0.4;
+}
+
+/* --- LEYENDA DE COLORES --- */
+.leyenda {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.leyenda-titulo {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #3a3a5a;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+    font-size: 0.82rem;
+    color: #666888;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: color 0.2s;
+}
+
+.leyenda-item:hover { color: #b0b0cc; }
+
+.leyenda-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.85;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .columna-lista.visible {
+        width: 280px;
+        min-width: 240px;
+        padding: 24px 20px;
+    }
+    h2 { font-size: 1.2rem; }
+}
