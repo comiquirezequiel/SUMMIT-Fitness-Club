@@ -15,7 +15,9 @@ body {
     overflow: hidden;
 }
 
-/* --- LAYOUT PRINCIPAL --- */
+/* ─────────────────────────────────────────────
+   LAYOUT PRINCIPAL — DESKTOP
+───────────────────────────────────────────── */
 .contenedor-catalogo {
     display: flex;
     width: 100vw;
@@ -23,7 +25,9 @@ body {
     gap: 0;
 }
 
-/* --- COLUMNA VISUAL --- */
+/* ─────────────────────────────────────────────
+   COLUMNA VISUAL
+───────────────────────────────────────────── */
 .columna-visual {
     position: relative;
     flex: 1;
@@ -39,38 +43,125 @@ body {
     flex: 1.4;
 }
 
-/* --- MODELO PRINCIPAL --- */
+/* ─────────────────────────────────────────────
+   MODELO PRINCIPAL
+───────────────────────────────────────────── */
 #modelo-interactivo {
     width: 100%;
     height: 90%;
-    transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+    transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
 }
 
 #modelo-interactivo.oculto {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.92);
     filter: blur(10px);
     pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   ANIMACIÓN DE PULSO — ZONAS INTERACTIVAS
+───────────────────────────────────────────── */
+@keyframes pulse-glow {
+    0%   { fill: transparent; }
+    100% { fill: rgba(0, 210, 255, 0.09); }
 }
 
 .parte-modelo, .parte-modelo path {
     cursor: pointer;
     transition: fill 0.3s;
+    animation: pulse-glow 3s ease-in-out infinite alternate;
+}
+
+/* Retrasos escalonados para que no pulsen juntos */
+#brazos-frente          { animation-delay: 0s; }
+#pecho                  { animation-delay: 0.5s; }
+#abdominal              { animation-delay: 1s; }
+#piernas-frente         { animation-delay: 1.5s; }
+#brazos-trasero         { animation-delay: 0.25s; }
+#espalda                { animation-delay: 0.75s; }
+#piernas-trasera        { animation-delay: 1.25s; }
+
+/* Detener pulso cuando el modelo está oculto */
+#modelo-interactivo.oculto .parte-modelo,
+#modelo-interactivo.oculto .parte-modelo path {
+    animation: none;
 }
 
 .parte-modelo:hover, .parte-modelo:hover path {
-    fill: rgba(0, 210, 255, 0.35) !important;
-    filter: drop-shadow(0 0 18px rgba(0, 210, 255, 0.7));
+    fill: rgba(0, 210, 255, 0.38) !important;
+    filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.75));
+    animation: none;
 }
 
-/* --- BOTÓN VOLVER --- */
+/* ─────────────────────────────────────────────
+   TOOLTIP FLOTANTE (desktop)
+───────────────────────────────────────────── */
+#tooltip-zona {
+    position: fixed;
+    background: rgba(13, 13, 20, 0.92);
+    border: 1px solid rgba(0, 210, 255, 0.35);
+    color: #00d2ff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 6px 14px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    white-space: nowrap;
+}
+
+#tooltip-zona.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────────
+   BADGE — ZONA ACTIVA AL VOLVER
+───────────────────────────────────────────── */
+#badge-zona-activa {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    background: rgba(0, 210, 255, 0.12);
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    color: #00d2ff;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 5;
+    backdrop-filter: blur(8px);
+}
+
+#badge-zona-activa.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ─────────────────────────────────────────────
+   BOTÓN VOLVER
+───────────────────────────────────────────── */
 .btn-volver {
     position: absolute;
-    top: 24px;
-    left: 24px;
-    background: rgba(45, 45, 63, 0.85);
+    top: 20px;
+    left: 20px;
+    background: rgba(45, 45, 63, 0.88);
     color: #ccd0e0;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.12);
     padding: 10px 18px;
     border-radius: 8px;
     cursor: pointer;
@@ -96,7 +187,9 @@ body {
     border-color: #00d2ff;
 }
 
-/* --- CONTENEDOR DEL DETALLE MUSCULAR --- */
+/* ─────────────────────────────────────────────
+   CONTENEDOR DEL DETALLE MUSCULAR
+───────────────────────────────────────────── */
 .contenedor-detalle {
     position: absolute;
     width: 96%;
@@ -109,7 +202,7 @@ body {
     filter: blur(15px);
     transform: scale(1.05);
     pointer-events: none;
-    transition: opacity 0.6s ease-out, filter 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.55s ease-out, filter 0.55s ease-out, transform 0.55s ease-out;
 }
 
 .contenedor-detalle.activo {
@@ -119,7 +212,9 @@ body {
     pointer-events: auto;
 }
 
-/* --- SVG DE DETALLE --- */
+/* ─────────────────────────────────────────────
+   SVG DE DETALLE
+───────────────────────────────────────────── */
 .svg-detalle {
     display: none;
     width: auto;
@@ -133,72 +228,74 @@ body {
     display: block;
 }
 
-/* Ajustes por vista — solo los que son muy anchos o muy altos */
 #vista-brazos-frente   { max-width: 50%; }
 #vista-brazos-trasero  { max-width: 50%; }
 
-
-/* --- MÚSCULOS DE COLORES --- */
+/* ─────────────────────────────────────────────
+   MÚSCULOS DE COLORES — PALETA CURADA
+───────────────────────────────────────────── */
 .sub-musculo {
     cursor: pointer;
-    fill-opacity: 0.45;
-    transition: all 0.3s ease;
+    fill-opacity: 0.42;
+    transition: all 0.25s ease;
     stroke: #ffffff;
-    stroke-width: 2px;
-    stroke-opacity: 0.6;
+    stroke-width: 1.5px;
+    stroke-opacity: 0.5;
 }
 
 .sub-musculo:hover, .sub-musculo.activo {
-    fill-opacity: 0.50;
-    stroke-width: 4px;
+    fill-opacity: 0.65;
+    stroke-width: 3px;
     stroke-opacity: 1;
-    filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.85));
+    filter: drop-shadow(0 0 10px currentColor);
     outline: none;
 }
 
 /* PECHO */
-#pecho-superior        { fill: #0AFF0A; }
-#pecho-medio           { fill: #F68616; }
-#pecho-inferior        { fill: #CC25ED; }
+#pecho-superior        { fill: #22C55E; }   /* verde esmeralda */
+#pecho-medio           { fill: #F97316; }   /* naranja cálido */
+#pecho-inferior        { fill: #C026D3; }   /* violeta */
 
 /* BRAZO FRENTE */
-#deltoide-frontal      { fill: #A70B0B; }
-#deltoide-lateral      { fill: #17C6D3; }
-#cabeza-larga          { fill: #DFB321; }
-#cabeza-corta          { fill: #DB1CED; }
-#antebrazo-braquiorradial { fill: #C7159A; }
-#antebrazo-flexores    { fill: #0AFF0A; }
+#deltoide-frontal      { fill: #EF4444; }   /* rojo claro */
+#deltoide-lateral      { fill: #22D3EE; }   /* cian suave */
+#cabeza-larga          { fill: #EAB308; }   /* amarillo dorado */
+#cabeza-corta          { fill: #A855F7; }   /* púrpura */
+#antebrazo-braquiorradial { fill: #EC4899; } /* rosa fuerte */
+#antebrazo-flexores    { fill: #10B981; }   /* verde teal */
 
-/* --- ABDOMEN --- */
-#recto-abdominal       { fill: #FF4545; }
-#oblicuos              { fill: #FFB800; }
-#serrato-anterior      { fill: #00E5FF; }
+/* ABDOMEN */
+#recto-abdominal       { fill: #F87171; }   /* rojo suave */
+#oblicuos              { fill: #FBBF24; }   /* ámbar */
+#serrato-anterior      { fill: #38BDF8; }   /* celeste */
 
-/* --- ESPALDA --- */
-#trapecio-superior     { fill: #FF6B35; }
-#espalda-alta          { fill: #7B61FF; }
-#dorsales-anchos       { fill: #00C9A7; }
-#lumbar                { fill: #FF3CAC; }
+/* ESPALDA */
+#trapecio-superior     { fill: #FB923C; }   /* naranja medio */
+#espalda-alta          { fill: #818CF8; }   /* índigo claro */
+#dorsales-anchos       { fill: #2DD4BF; }   /* teal brillante */
+#lumbar                { fill: #F472B6; }   /* rosa claro */
 
 /* BRAZO TRASERO */
-#deltoides-posterior   { fill: #FF9800; }
-#triceps-larga         { fill: #8E24AA; }
-#triceps-lateral       { fill: #E91E63; }
-#triceps-medial        { fill: #00ACC1; }
-#antebrazo-extensores  { fill: #F4511E; }
+#deltoides-posterior   { fill: #FFA726; }   /* naranja ámbar */
+#triceps-larga         { fill: #AB47BC; }   /* morado medio */
+#triceps-lateral       { fill: #EC407A; }   /* rosa intenso */
+#triceps-medial        { fill: #26C6DA; }   /* cian medio */
+#antebrazo-extensores  { fill: #FF7043; }   /* coral */
 
-/* --- PIERNA FRENTE --- */
-#cuadriceps            { fill: #39FF14; }
-#aductores             { fill: #FF6B35; }
-#tibia-anterior        { fill: #00BFFF; }
+/* PIERNA FRENTE */
+#cuadriceps            { fill: #84CC16; }   /* lima suave */
+#aductores             { fill: #FB923C; }   /* naranja medio */
+#tibia-anterior        { fill: #38BDF8; }   /* celeste */
 
 /* PIERNA TRASERA */
-#gluteo                { fill: #3F51B5; }
-#isquiotibiales        { fill: #E53935; }
-#gemelos               { fill: #43A047; }
-#abductores            { fill: #FDD835; }
+#gluteo                { fill: #6366F1; }   /* índigo */
+#isquiotibiales        { fill: #EF4444; }   /* rojo claro */
+#gemelos               { fill: #4ADE80; }   /* verde claro */
+#abductores            { fill: #FCD34D; }   /* amarillo claro */
 
-/* --- COLUMNA DE INFORMACIÓN --- */
+/* ─────────────────────────────────────────────
+   COLUMNA DE INFORMACIÓN — DESKTOP
+───────────────────────────────────────────── */
 .columna-lista {
     width: 0;
     overflow: hidden;
@@ -220,7 +317,9 @@ body {
     padding: 40px 32px;
 }
 
-/* --- CONTENIDO DEL PANEL --- */
+/* ─────────────────────────────────────────────
+   CONTENIDO DEL PANEL
+───────────────────────────────────────────── */
 .panel-header {
     margin-bottom: 24px;
     border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -284,7 +383,9 @@ h2 {
     opacity: 0.4;
 }
 
-/* --- LEYENDA DE COLORES --- */
+/* ─────────────────────────────────────────────
+   LEYENDA DE COLORES
+───────────────────────────────────────────── */
 .leyenda {
     margin-top: 28px;
     padding-top: 20px;
@@ -322,12 +423,196 @@ h2 {
     opacity: 0.85;
 }
 
-/* --- RESPONSIVE --- */
+/* ─────────────────────────────────────────────
+   RESPONSIVE — MÓVIL (< 768px)
+   Layout: SVG arriba / Sheet desde abajo
+───────────────────────────────────────────── */
 @media (max-width: 768px) {
-    .columna-lista.visible {
-        width: 280px;
-        min-width: 240px;
-        padding: 24px 20px;
+
+    body {
+        overflow: hidden;
     }
-    h2 { font-size: 1.2rem; }
+
+    /* El contenedor pasa a ser una columna vertical */
+    .contenedor-catalogo {
+        flex-direction: column;
+    }
+
+    /* Columna visual: ocupa la parte superior */
+    .columna-visual {
+        flex: none;
+        width: 100%;
+        height: 60dvh;
+        transition: height 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    /* Cuando el panel está abierto, el modelo se achica un poco */
+    .columna-visual.con-panel {
+        flex: none;
+        height: 42dvh;
+    }
+
+    /* El SVG del modelo ocupa el espacio correctamente */
+    #modelo-interactivo {
+        width: 100%;
+        height: 100%;
+        /* Mejora de touch: evita el doble-tap zoom */
+        touch-action: manipulation;
+    }
+
+    /* Aumentar áreas de toque en móvil */
+    .parte-modelo path {
+        stroke-width: 18px;
+        stroke: transparent;
+        stroke-linejoin: round;
+    }
+
+    /* Pulso ligeramente más notorio en móvil */
+    @keyframes pulse-glow {
+        0%   { fill: transparent; }
+        100% { fill: rgba(0, 210, 255, 0.12); }
+    }
+
+    /* Botón volver: centrado arriba, más fácil de tocar */
+    .btn-volver {
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        padding: 10px 24px;
+        font-size: 1rem;
+    }
+
+    .btn-volver.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Badge en móvil: más arriba para no quedar tapado */
+    #badge-zona-activa {
+        bottom: 12px;
+        font-size: 0.75rem;
+    }
+
+    /* ── BOTTOM SHEET (panel de info) ── */
+    .columna-lista {
+        /* Resetear estilos desktop */
+        width: 100% !important;
+        min-width: unset !important;
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.08);
+
+        /* Position: ocupa la parte inferior */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 0;
+        max-height: 58dvh;
+
+        /* Aspecto de sheet */
+        background: #16162a;
+        border-radius: 20px 20px 0 0;
+        padding: 0 !important;
+
+        /* Transición vertical en lugar de ancho */
+        transition: height 0.5s cubic-bezier(0.77, 0, 0.175, 1),
+                    opacity 0.4s ease 0.1s;
+
+        overflow: hidden;
+        opacity: 0;
+        z-index: 50;
+        box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .columna-lista.visible {
+        height: 58dvh;
+        opacity: 1;
+        padding: 0 !important; /* el contenido interno tiene su propio padding */
+    }
+
+    /* Manija visual del sheet */
+    .columna-lista::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 4px;
+        background: rgba(255,255,255,0.15);
+        border-radius: 2px;
+        margin: 12px auto 0;
+        flex-shrink: 0;
+    }
+
+    /* Contenido interno del sheet con scroll y padding */
+    .panel-inner {
+        padding: 16px 24px 32px;
+        overflow-y: auto;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .panel-inner::-webkit-scrollbar { display: none; }
+
+    .panel-header {
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        white-space: normal;
+    }
+
+    .info-mecanica {
+        flex: none;
+        overflow: visible;
+    }
+
+    .info-mecanica p,
+    .info-mecanica div {
+        font-size: 0.93rem;
+    }
+
+    /* Leyenda en móvil: grid de 2 columnas */
+    .leyenda {
+        margin-top: 20px;
+        padding-top: 14px;
+    }
+
+    #leyenda-colores .leyenda-item {
+        padding: 8px 0;
+        font-size: 0.85rem;
+    }
+
+    /* SVG de detalle: ajustar para que no se desborde */
+    .contenedor-detalle {
+        width: 100%;
+        height: 100%;
+    }
+
+    #vista-brazos-frente,
+    #vista-brazos-trasero {
+        max-width: 70%;
+    }
+
+    /* Tooltip: deshabilitado en móvil */
+    #tooltip-zona {
+        display: none !important;
+    }
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — TABLET (768px – 1024px)
+───────────────────────────────────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .columna-lista.visible {
+        width: 300px;
+        min-width: 280px;
+        padding: 28px 24px;
+    }
+    h2 { font-size: 1.3rem; }
 }
