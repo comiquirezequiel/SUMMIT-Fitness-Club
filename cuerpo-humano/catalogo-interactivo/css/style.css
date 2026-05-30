@@ -473,14 +473,14 @@ h2 {
         100% { fill: rgba(0, 210, 255, 0.12); }
     }
 
-    /* Botón volver: centrado arriba, más fácil de tocar */
+    /* Botón volver: arriba a la izquierda en móvil */
     .btn-volver {
         top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
+        left: 16px;
+        transform: none;
         white-space: nowrap;
-        padding: 10px 24px;
-        font-size: 1rem;
+        padding: 10px 18px;
+        font-size: 0.9rem;
     }
 
     .btn-volver.visible {
