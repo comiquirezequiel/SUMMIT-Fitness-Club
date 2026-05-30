@@ -60,8 +60,19 @@ body {
 }
 
 /* ─────────────────────────────────────────────
-   ANIMACIÓN DE PULSO — ZONAS INTERACTIVAS
+   SUPRIMIR HIGHLIGHT TÁCTIL — MÓVIL
+   Elimina el rectángulo negro que los navegadores
+   móviles dibujan al tocar elementos SVG
 ───────────────────────────────────────────── */
+#modelo-interactivo,
+#modelo-interactivo *,
+.contenedor-detalle svg,
+.contenedor-detalle svg * {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+
 @keyframes pulse-glow {
     0%   { fill: transparent; }
     100% { fill: rgba(0, 210, 255, 0.09); }
@@ -71,6 +82,12 @@ body {
     cursor: pointer;
     transition: fill 0.3s;
     animation: pulse-glow 3s ease-in-out infinite alternate;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.parte-modelo:focus, .parte-modelo path:focus {
+    outline: none;
 }
 
 /* Retrasos escalonados para que no pulsen juntos */
@@ -241,6 +258,12 @@ body {
     stroke: #ffffff;
     stroke-width: 1.5px;
     stroke-opacity: 0.5;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.sub-musculo:focus {
+    outline: none;
 }
 
 .sub-musculo:hover, .sub-musculo.activo {
