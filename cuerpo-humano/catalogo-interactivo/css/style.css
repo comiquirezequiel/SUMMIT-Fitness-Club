@@ -162,11 +162,11 @@ body {
     background: rgba(45, 45, 63, 0.88);
     color: #ccd0e0;
     border: 1px solid rgba(255,255,255,0.12);
-    padding: 10px 18px;
-    border-radius: 8px;
+    padding: 7px 14px;
+    border-radius: 7px;
     cursor: pointer;
     font-family: 'Rajdhani', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.82rem;
     font-weight: 600;
     letter-spacing: 0.05em;
     opacity: 0;
@@ -479,8 +479,8 @@ h2 {
         left: 16px;
         transform: none;
         white-space: nowrap;
-        padding: 10px 18px;
-        font-size: 0.9rem;
+        padding: 7px 14px;
+        font-size: 0.82rem;
     }
 
     .btn-volver.visible {
