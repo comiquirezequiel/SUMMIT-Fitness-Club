@@ -262,6 +262,10 @@ document.addEventListener('DOMContentLoaded', () => {
             animando = true;
             tooltip.classList.remove('visible');
 
+            // Ocultar badge inmediatamente si estaba visible
+            clearTimeout(badgeTimeout);
+            badgeZona.classList.remove('visible');
+
             // Guardar título para el badge al volver
             ultimoTituloVisto = tituloSeccion || 'Detalle Muscular';
 
