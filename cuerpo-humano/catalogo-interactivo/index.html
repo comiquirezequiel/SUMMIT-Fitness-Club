@@ -12,6 +12,7 @@
 
     <div class="columna-visual" id="columna-visual">
         <button id="btn-volver" class="btn-volver">← Volver al Cuerpo</button>
+        <div id="badge-zona-activa"></div>
 
         <svg id="modelo-interactivo" viewBox="0 0 3553 3513" fill="none" xmlns="http://www.w3.org/2000/svg">
 
@@ -252,23 +253,28 @@
     </div>
 
     <div class="columna-lista" id="columna-lista">
-        <div class="panel-header">
-            <div class="panel-subtitulo">Análisis Biomecánico</div>
-            <h2 id="titulo-panel">—</h2>
-        </div>
-
-        <div id="info-mecanica" class="info-mecanica">
-            <div class="instruccion-inicial" id="instruccion-inicial">
-                <div class="icono">◎</div>
-                <p>Seleccioná una de las regiones coloreadas para ver su análisis biomecánico y ejercicios recomendados.</p>
+        <div class="panel-inner">
+            <div class="panel-header">
+                <div class="panel-subtitulo">Análisis Biomecánico</div>
+                <h2 id="titulo-panel">—</h2>
             </div>
-            <div id="texto-mecanico"></div>
-        </div>
 
-        <div class="leyenda" id="leyenda-colores" style="display:none;"></div>
+            <div id="info-mecanica" class="info-mecanica">
+                <div class="instruccion-inicial" id="instruccion-inicial">
+                    <div class="icono">◎</div>
+                    <p>Seleccioná una de las regiones coloreadas para ver su análisis biomecánico y ejercicios recomendados.</p>
+                </div>
+                <div id="texto-mecanico"></div>
+            </div>
+
+            <div class="leyenda" id="leyenda-colores" style="display:none;"></div>
+        </div>
     </div>
 
 </div>
+
+<!-- Tooltip flotante (desktop) -->
+<div id="tooltip-zona"></div>
 
 <script src="js/script.js"></script>
 </body>
