@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Interactivo de Ejercicios</title>
+    <meta name="description" content="Catálogo interactivo de ejercicios de gimnasio con modelo muscular anatómico. Explora cada grupo muscular, su función biomecánica y los mejores ejercicios para entrenarlo.">
+    <meta name="theme-color" content="#0d0d14">
+    <meta property="og:title" content="Catálogo Interactivo de Ejercicios — Modelo Muscular">
+    <meta property="og:description" content="Modelo anatómico interactivo para gimnasio. Descubre la función de cada músculo y los ejercicios clave para desarrollarlo.">
+    <meta property="og:type" content="website">
+    <title>Catálogo Interactivo de Ejercicios — Modelo Muscular</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;">Catálogo Interactivo de Ejercicios de Gimnasio — Modelo Muscular Anatómico</h1>
 
 <div class="contenedor-catalogo">
 
@@ -14,10 +21,11 @@
         <button id="btn-volver" class="btn-volver">← Volver al Cuerpo</button>
         <div id="badge-zona-activa"></div>
 
+
         <svg id="modelo-interactivo" viewBox="0 0 3553 3513" fill="none" xmlns="http://www.w3.org/2000/svg">
 
     <!-- Imagen anatómica de fondo -->
-    <image href="assets/modelo-muscular.png" x="0" y="0" width="3553" height="3513" preserveAspectRatio="xMidYMid meet"/>
+    <image href="assets/modelo-muscular.webp" x="0" y="0" width="3553" height="3513" preserveAspectRatio="xMidYMid meet"/>
 
     <g id="modelo-humano">
 
@@ -66,7 +74,7 @@
         <div id="contenedor-detalle" class="contenedor-detalle">
             
             <svg id="vista-pecho" class="svg-detalle" viewBox="0 0 1118 672" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/pecho-foto.png" width="1118" height="672" />
+                <image href="assets/pecho-foto.webp" width="1118" height="672" />
                 <g class="detalle-interactivo">
                     <path id="pecho-inferior" class="sub-musculo" d="M873.061 374.143C874.543 396.268 876.414 407.032 878.21 411C863.495 415.626 838.509 422.369 831.21 420.179C820.043 436.679 785.11 472.879 734.71 485.679C671.71 501.679 670.71 497.679 599.21 472.679C588.21 471.179 564.51 472.8 559.71 488C554.91 472.8 530.21 471.09 519.21 472.59C447.71 497.59 446.71 501.59 383.71 485.59C333.31 472.79 298.377 436.5 287.21 420C279.912 422.19 250.442 414.126 239.21 409.5C240.567 405.573 242.632 395.319 244.443 374C347.204 385.069 554.062 399.835 561.933 374C572.152 399.055 770.572 385.119 873.061 374.143Z" />
                     <path id="pecho-medio" class="sub-musculo" d="M561.933 374C554.061 399.835 347.204 385.069 244.443 374C245.73 358.844 246.889 338.096 247.574 310.053C284.17 315.276 396.797 309.522 558.624 245.164C719.506 309.059 832.2 315.612 870.703 310.772C871.204 338.279 872.04 358.905 873.061 374.143C770.572 385.119 572.152 399.055 561.933 374Z" />
@@ -75,7 +83,7 @@
             </svg>
 
             <svg id="vista-brazos-frente" class="svg-detalle" viewBox="0 0 730 870" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/detalle-brazo-frente.png" x="0" y="0" width="730" height="1464" preserveAspectRatio="xMidYMid meet"/>
+                <image href="assets/detalle-brazo-frente.webp" x="0" y="0" width="730" height="1464" preserveAspectRatio="xMidYMid meet"/>
                 <g class="detalle-interactivo">
 
                     <!-- Contorno general — no interactivo -->
@@ -111,7 +119,7 @@
 
             <!-- ABDOMEN -->
             <svg id="vista-abdomen" class="svg-detalle" viewBox="0 0 705 970" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/detalle-abdomen.png" x="0" y="0" width="705" height="970" preserveAspectRatio="xMidYMid meet"/>
+                <image href="assets/detalle-abdomen.webp" x="0" y="0" width="705" height="970" preserveAspectRatio="xMidYMid meet"/>
                 <g class="detalle-abdomen-interactivo">
 
                     <!-- Contorno general (no interactivo) -->
@@ -131,7 +139,7 @@
             </svg>
 
             <svg id="vista-espalda" class="svg-detalle" viewBox="0 0 782 1274" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/detalle-espalda.png" x="0" y="0" width="782" height="1274" preserveAspectRatio="xMidYMid meet"/>
+                <image href="assets/detalle-espalda.webp" x="0" y="0" width="782" height="1274" preserveAspectRatio="xMidYMid meet"/>
                 <g class="detalle-interactivo">
 
                     <!-- Contorno general — no interactivo -->
@@ -159,7 +167,7 @@
 
             <!-- PIERNA FRENTE — ambas piernas -->
             <svg id="vista-piernas-frente" class="svg-detalle" viewBox="0 0 706 2033" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/detalle-pierna-frente.png" x="0" y="0" width="706" height="2033" preserveAspectRatio="xMidYMid meet"/>
+                <image href="assets/detalle-pierna-frente.webp" x="0" y="0" width="706" height="2033" preserveAspectRatio="xMidYMid meet"/>
                 <g class="detalle-pierna-frente-interactivo">
 
                     <!-- CUADRÍCEPS (pierna izquierda y derecha) -->
@@ -187,7 +195,7 @@
             </svg>
 
             <svg id="vista-piernas-trasera" class="svg-detalle" viewBox="0 0 730 2240" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/detalle-pierna-trasera.png" x="0" y="0" width="730" height="2240" preserveAspectRatio="xMidYMid meet"/>
+                <image href="assets/detalle-pierna-trasera.webp" x="0" y="0" width="730" height="2240" preserveAspectRatio="xMidYMid meet"/>
                 <g class="detalle-interactivo">
 
                     <!-- Contorno general — no interactivo -->
@@ -220,7 +228,7 @@
             </svg>
 
             <svg id="vista-brazos-trasero" class="svg-detalle" viewBox="0 0 643 1070" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <image href="assets/detalle-brazo-trasero.png" x="0" y="0" width="643" height="1528" preserveAspectRatio="xMidYMid meet"/>
+                <image href="assets/detalle-brazo-trasero.webp" x="0" y="0" width="643" height="1528" preserveAspectRatio="xMidYMid meet"/>
                 <g class="detalle-interactivo">
 
                     <!-- Contorno general — no interactivo -->
@@ -253,6 +261,11 @@
     </div>
 
     <div class="columna-lista" id="columna-lista">
+        <!-- Handle tactil del sheet: tap = expandir/colapsar -->
+        <div id="sheet-handle">
+            <div class="handle-bar"></div>
+            <button id="btn-chevron" aria-label="Expandir panel">▲</button>
+        </div>
         <div class="panel-inner">
             <div class="panel-header">
                 <div class="panel-subtitulo">Análisis Biomecánico</div>
@@ -276,6 +289,7 @@
 <!-- Tooltip flotante (desktop) -->
 <div id="tooltip-zona"></div>
 
+<script src="data/musculos.js"></script>
 <script src="js/script.js"></script>
 </body>
 </html>
