@@ -1,3 +1,4 @@
+/* ─── Datos de músculos — cargado como script global ─── */
 const MUSCULOS_DATA = {
   "musculos": {
     "pecho-superior": {
