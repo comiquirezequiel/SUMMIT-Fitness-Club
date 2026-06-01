@@ -1,28 +1,27 @@
-/* ─── Datos de músculos — cargado como script global ─── */
 const MUSCULOS_DATA = {
   "musculos": {
     "pecho-superior": {
-      "titulo": "Fibras Claviculares (Pecho Superior)",
+      "titulo": "Pecho Superior",
       "mecanica": "<strong>Función principal:</strong> Flexión de hombro y aducción horizontal.<br><br><strong>Ejercicios Clave:</strong><br>• Press inclinado con barra o mancuernas<br>• Aperturas en polea alta<br>• Fondos con inclinación hacia adelante",
       "color": "#22C55E"
     },
     "pecho-medio": {
-      "titulo": "Fibras Esternocostales (Pecho Medio)",
+      "titulo": "Pecho Medio",
       "mecanica": "<strong>Función principal:</strong> Aducción horizontal pura.<br><br><strong>Ejercicios Clave:</strong><br>• Press plano con barra<br>• Press con mancuernas en banco plano<br>• Peck-Deck / Mariposa",
       "color": "#F97316"
     },
     "pecho-inferior": {
-      "titulo": "Fibras Abdominales (Pecho Inferior)",
+      "titulo": "Pecho Inferior",
       "mecanica": "<strong>Función principal:</strong> Aducción horizontal descendente.<br><br><strong>Ejercicios Clave:</strong><br>• Fondos en paralelas<br>• Press declinado<br>• Aperturas en polea baja",
       "color": "#C026D3"
     },
     "deltoide-frontal": {
-      "titulo": "Deltoides Anterior (Hombro Frontal)",
+      "titulo": "Hombro Frontal",
       "mecanica": "<strong>Función principal:</strong> Flexión y rotación interna del hombro.<br><br><strong>Ejercicios Clave:</strong><br>• Press militar con barra<br>• Elevaciones frontales con mancuernas<br>• Press Arnold",
       "color": "#EF4444"
     },
     "deltoide-lateral": {
-      "titulo": "Deltoides Medio (Hombro Lateral)",
+      "titulo": "Hombro Lateral",
       "mecanica": "<strong>Función principal:</strong> Abducción del brazo (alejarlo del cuerpo).<br><br><strong>Ejercicios Clave:</strong><br>• Elevaciones laterales con mancuernas<br>• Remo al mentón agarre ancho<br>• Elevaciones en polea baja lateral",
       "color": "#22D3EE"
     },
@@ -47,7 +46,7 @@ const MUSCULOS_DATA = {
       "color": "#10B981"
     },
     "deltoides-posterior": {
-      "titulo": "Deltoides Posterior (Hombro Atrás)",
+      "titulo": "Hombro Posterior",
       "mecanica": "<strong>Función principal:</strong> Extensión horizontal y rotación externa del hombro.<br><br><strong>Ejercicios Clave:</strong><br>• Pájaros (Rear delt flyes)<br>• Face pull en polea alta<br>• Peck-deck invertido",
       "color": "#FFA726"
     },
@@ -77,12 +76,12 @@ const MUSCULOS_DATA = {
       "color": "#6366F1"
     },
     "isquiotibiales": {
-      "titulo": "Isquiosurales (Femorales)",
+      "titulo": "Femorales",
       "mecanica": "<strong>Función principal:</strong> Flexión de rodilla y extensión de cadera.<br><br><strong>Ejercicios Clave:</strong><br>• Peso muerto rumano o con piernas rígidas<br>• Curl femoral acostado<br>• Curl femoral sentado<br>• Buenos días (Good mornings)",
       "color": "#EF4444"
     },
     "gemelos": {
-      "titulo": "Gastrocnemio y Sóleo (Pantorrillas)",
+      "titulo": "Pantorrillas ",
       "mecanica": "<strong>Función principal:</strong> Flexión plantar del pie (ponerse en puntas de pie).<br><br><strong>Ejercicios Clave:</strong><br>• Elevación de talones de pie (Gastrocnemio)<br>• Elevación de talones sentado (Sóleo)<br>• Saltos a la cuerda",
       "color": "#4ADE80"
     },
@@ -117,12 +116,12 @@ const MUSCULOS_DATA = {
       "color": "#818CF8"
     },
     "dorsales-anchos": {
-      "titulo": "Dorsal Ancho (Latissimus Dorsi)",
+      "titulo": "Dorsal Ancho",
       "mecanica": "<strong>Función principal:</strong> Extensión, aducción y rotación interna del hombro. Da la forma de 'V' a la espalda.<br><br><strong>Ejercicios Clave:</strong><br>• Dominadas con agarre prono<br>• Jalón al pecho en polea alta<br>• Remo con barra en pronación<br>• Pullover",
       "color": "#2DD4BF"
     },
     "lumbar": {
-      "titulo": "Erectores Espinales (Zona Lumbar)",
+      "titulo": "Zona Lumbar",
       "mecanica": "<strong>Función principal:</strong> Extensión y estabilización de la columna vertebral.<br><br><strong>Ejercicios Clave:</strong><br>• Peso muerto convencional<br>• Hiperextensiones en banco romano<br>• Good mornings<br>• Superman (suelo)",
       "color": "#F472B6"
     },
