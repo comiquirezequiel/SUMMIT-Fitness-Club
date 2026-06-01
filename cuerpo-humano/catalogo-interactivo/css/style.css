@@ -59,11 +59,7 @@ body {
     pointer-events: none;
 }
 
-/* ─────────────────────────────────────────────
-   SUPRIMIR HIGHLIGHT TÁCTIL — MÓVIL
-   Elimina el rectángulo negro que los navegadores
-   móviles dibujan al tocar elementos SVG
-───────────────────────────────────────────── */
+
 #modelo-interactivo,
 #modelo-interactivo *,
 .contenedor-detalle svg,
@@ -448,132 +444,210 @@ h2 {
 
 /* ─────────────────────────────────────────────
    RESPONSIVE — MÓVIL (< 768px)
-   Layout: SVG arriba / Sheet desde abajo
+   Layout fijo: SVG fixed arriba / Sheet fixed abajo
 ───────────────────────────────────────────── */
 @media (max-width: 768px) {
 
-    body {
-        overflow: hidden;
-    }
+    body { overflow: hidden; }
+    .contenedor-catalogo { flex-direction: column; }
 
-    /* El contenedor pasa a ser una columna vertical */
-    .contenedor-catalogo {
-        flex-direction: column;
-    }
-
-    /* Columna visual: ocupa la parte superior */
+    /* ══════════════════════════════════════════
+       COLUMNA VISUAL — contenedor de fondo
+    ══════════════════════════════════════════ */
     .columna-visual {
         flex: none;
         width: 100%;
-        height: 60dvh;
-        transition: height 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        height: 100dvh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        transition: none; /* sin transición de height, el fixed lo maneja */
     }
 
-    /* Cuando el panel está abierto, el modelo se achica un poco */
-    .columna-visual.con-panel {
-        flex: none;
-        height: 42dvh;
-    }
-
-    /* El SVG del modelo ocupa el espacio correctamente */
+    /* Modelo principal: centrado en pantalla completa */
     #modelo-interactivo {
-        width: 100%;
-        height: 100%;
-        /* Mejora de touch: evita el doble-tap zoom */
+        width: 86%;
+        height: 86%;
+        max-width: 100%;
         touch-action: manipulation;
+        transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
     }
 
-    /* Aumentar áreas de toque en móvil */
     .parte-modelo path {
         stroke-width: 18px;
         stroke: transparent;
         stroke-linejoin: round;
     }
 
-    /* Pulso ligeramente más notorio en móvil */
     @keyframes pulse-glow {
         0%   { fill: transparent; }
         100% { fill: rgba(0, 210, 255, 0.12); }
     }
 
-    /* Botón volver: arriba a la izquierda en móvil */
+    /* ── Botón Volver — fixed arriba a la izquierda ── */
     .btn-volver {
-        top: 12px;
-        left: 16px;
+        position: fixed;
+        top: 10px;
+        left: 10px;
         transform: none;
         white-space: nowrap;
-        padding: 7px 14px;
-        font-size: 0.82rem;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        z-index: 100;
     }
+    .btn-volver.visible { opacity: 1; visibility: visible; }
 
-    .btn-volver.visible {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* Badge en móvil: más arriba para no quedar tapado */
     #badge-zona-activa {
         bottom: 12px;
         font-size: 0.75rem;
     }
 
-    /* ── BOTTOM SHEET (panel de info) ── */
+    /* ══════════════════════════════════════════
+       CONTENEDOR DETALLE — fixed en la zona superior
+       Ocupa exactamente el top 40dvh de la pantalla
+    ══════════════════════════════════════════ */
+    .contenedor-detalle {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: 40dvh !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        padding: 0 !important;
+        background: #0d0d14;
+        z-index: 60;
+
+        opacity: 0;
+        filter: blur(15px);
+        transform: scale(1.05);
+        pointer-events: none;
+        transition: opacity 0.45s ease-out, filter 0.45s ease-out, transform 0.45s ease-out;
+    }
+
+    .contenedor-detalle.activo {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    /* SVG: llena el área sin desbordarse */
+    .svg-detalle {
+        display: none;
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 40dvh;
+        object-fit: contain;
+    }
+
+    .svg-detalle.activo { display: block; }
+
+    /* Brazos: más estrechos de por sí */
+    #vista-brazos-frente,
+    #vista-brazos-trasero {
+        max-width: 55%;
+    }
+
+    /* Tooltip: deshabilitado en móvil */
+    #tooltip-zona { display: none !important; }
+
+    /* ══════════════════════════════════════════
+       BOTTOM SHEET — fixed en la zona inferior
+       Empieza en 40dvh desde arriba (ocupa 60dvh)
+    ══════════════════════════════════════════ */
     .columna-lista {
-        /* Resetear estilos desktop */
         width: 100% !important;
         min-width: unset !important;
         border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.08);
+        border-top: none;
 
-        /* Position: ocupa la parte inferior */
-        position: fixed;
-        bottom: 0;
+        position: fixed !important;
         left: 0;
         right: 0;
+        bottom: 0;
+        top: auto;
         height: 0;
-        max-height: 58dvh;
 
-        /* Aspecto de sheet */
-        background: #16162a;
-        border-radius: 20px 20px 0 0;
+        background: #13131f;
+        border-radius: 18px 18px 0 0;
         padding: 0 !important;
 
-        /* Transición vertical en lugar de ancho */
-        transition: height 0.5s cubic-bezier(0.77, 0, 0.175, 1),
-                    opacity 0.4s ease 0.1s;
+        transition: height 0.45s cubic-bezier(0.77, 0, 0.175, 1),
+                    border-radius 0.45s ease,
+                    opacity 0.35s ease 0.1s;
 
         overflow: hidden;
         opacity: 0;
-        z-index: 50;
-        box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
-    }
-
-    .columna-lista.visible {
-        height: 58dvh;
-        opacity: 1;
-        padding: 0 !important; /* el contenido interno tiene su propio padding */
-    }
-
-    /* Manija visual del sheet */
-    .columna-lista::before {
-        content: '';
-        display: block;
-        width: 40px;
-        height: 4px;
-        background: rgba(255,255,255,0.15);
-        border-radius: 2px;
-        margin: 12px auto 0;
-        flex-shrink: 0;
-    }
-
-    /* Contenido interno del sheet con scroll y padding */
-    .panel-inner {
-        padding: 16px 24px 32px;
-        overflow-y: auto;
-        height: 100%;
+        z-index: 70;
+        box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.7);
         display: flex;
         flex-direction: column;
-        gap: 0;
+    }
+
+    /* Estado abierto: 60dvh desde abajo */
+    .columna-lista.visible {
+        height: 60dvh;
+        opacity: 1;
+        padding: 0 !important;
+    }
+
+    /* Estado expandido: pantalla completa */
+    .columna-lista.visible.expandido {
+        height: 100dvh;
+        border-radius: 0;
+    }
+
+    /* ── Handle del sheet ── */
+    #sheet-handle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 10px 0 4px;
+        flex-shrink: 0;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+    }
+
+    .handle-bar {
+        width: 36px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 2px;
+    }
+
+    #btn-chevron {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 0.65rem;
+        padding: 0;
+        cursor: pointer;
+        line-height: 1;
+        transition: color 0.2s, transform 0.35s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .columna-lista.expandido #btn-chevron {
+        transform: rotate(180deg);
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── Contenido interno del sheet ── */
+    .panel-inner {
+        padding: 4px 20px 28px;
+        overflow-y: auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
     }
@@ -581,13 +655,17 @@ h2 {
     .panel-inner::-webkit-scrollbar { display: none; }
 
     .panel-header {
-        margin-bottom: 16px;
-        padding-bottom: 14px;
+        margin-bottom: 8px;
+        padding-bottom: 8px;
     }
 
     h2 {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         white-space: normal;
+    }
+
+    .panel-subtitulo {
+        font-size: 0.7rem;
     }
 
     .info-mecanica {
@@ -597,36 +675,25 @@ h2 {
 
     .info-mecanica p,
     .info-mecanica div {
-        font-size: 0.93rem;
+        font-size: 0.88rem;
+        line-height: 1.65;
     }
 
-    /* Leyenda en móvil: grid de 2 columnas */
-    .leyenda {
-        margin-top: 20px;
-        padding-top: 14px;
+    /* Leyenda de regiones dentro del sheet */
+    #leyenda-colores {
+        margin-top: 16px;
+        padding-top: 12px;
     }
 
-    #leyenda-colores .leyenda-item {
-        padding: 8px 0;
-        font-size: 0.85rem;
-    }
-
-    /* SVG de detalle: ajustar para que no se desborde */
-    .contenedor-detalle {
-        width: 100%;
-        height: 100%;
-    }
-
-    #vista-brazos-frente,
-    #vista-brazos-trasero {
-        max-width: 70%;
-    }
-
-    /* Tooltip: deshabilitado en móvil */
-    #tooltip-zona {
-        display: none !important;
+    .leyenda-item {
+        padding: 4px 0;
+        font-size: 0.78rem;
     }
 }
+
+
+
+
 
 /* ─────────────────────────────────────────────
    RESPONSIVE — TABLET (768px – 1024px)
